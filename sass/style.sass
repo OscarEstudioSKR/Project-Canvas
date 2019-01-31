@@ -1,0 +1,15 @@
+
+@mixin full
+    width: 100%
+    height: 100%
+    margin: 0
+
+
+body
+    @include full
+
+    canvas
+        @include full
+        background:  hsl(208, 90%, 4%)
+        position: fixed
+        z-index: -1
