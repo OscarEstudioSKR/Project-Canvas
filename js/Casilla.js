@@ -3,14 +3,27 @@ class Casilla {
         this.x = x;
         this.y = y;
         this.tam = tamCasilla;
-        console.log("creado");
+        this.obstaculo = false;
+        this.tipo = "Vacio";
         
     }
 
     dibujar(){
-        context.strokeStyle = "#fff";
-        context.lineWidth = .1;
-        context.strokeRect( this.x,  this.y, this.tam-1, this.tam-1); 
+
+        if(this.obstaculo == true){
+            context.fillStyle = colorRojo;
+            context.fillRect( this.x,  this.y, this.tam-1, this.tam-1); 
+        }else{
+            context.fillStyle = "black";
+            context.fillRect( this.x,  this.y, this.tam-1, this.tam-1);
+        }
+        
+    }
+
+    cambiarTipo(nuevoTipo){
+        this.tipo = nuevoTipo;
+        this.obstaculo = true;
+
     }
 
 }
