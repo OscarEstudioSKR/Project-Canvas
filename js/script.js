@@ -1,37 +1,31 @@
 
 //Autoinvocar JavaScript
 (function(){
-
     crearObjetosCuadricula();
-    generarObstaculos("Montaña", 200, "radial", "compacta");
-    generarObstaculos("Montaña", 55, "radial", "compacta");
-    generarObstaculos("Montaña", 150, "radial", "compacta");
-    generarObstaculos("Montaña", 30, "radial", "compacta");
-
+    generarMudo();
+    
 })()
 
-setInterval("main()", fps); //Bucle
-
-
+ //Bucle
+setInterval("main()", fps);
 
 //Interior del bucle//////////////////
 
-function main(){
-    
-
-    //Refrescar Canvas
+function main(){ 
     refrescarCanvas();
-}
 
+}
 
 function crearObjetosCuadricula(){
 
     //Iniciar Casillas
+    let cont = 0;
     for(let i = 0 ; i < numCasillas[0] ; i++ ){
         for(let n = 0 ; n < numCasillas[1] ; n++ ){
-            var nuevaCasilla = new Casilla (i*tamCasilla,n*tamCasilla);
-            nuevaCasilla.dibujar()
+            
+            var nuevaCasilla = new Casilla (cont,i*tamCasilla,n*tamCasilla);
             casillas.push(nuevaCasilla); 
+            cont++;
     }}
 }
 
@@ -44,25 +38,33 @@ function refrescarCanvas(){
     borrarCanvas();
 
     //Volver a dibujar cuadricula
-    for(let i in casillas){
-        casillas[i].dibujar();
+    casillas.map((i)=>i.dibujar());
+    for(let n = casillas.length-1; n > 0; n--){
+        casillas[n].imagenPorVecinos();
     }
-
-
 }
 
+
 function generarObstaculos(tipo, tam, zona, union){
-    let id = Math.floor(Math.random()*casillas.length-1);
-    console.log("Montaña creada en: "+ id)
+    let id = Math.floor(Math.random()*casillas.length);
 
     for(let i=0;i<tam-1;i++){
-        if(zona == "radial"){
-                
+        if(zona == "radial"){     
             if(union == "compacta"){
-
-                casillas[id].obstaculo = true;
-                nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), tipo);
-                        
+                nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), tipo);           
+            }
+            if(union == "fluida"){
+                nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom(),15), tipo);           
+            }
+        }
+        if(zona == "lineal"){     
+            if(union == "compacta"){
+                id = buscarIdPorDireccion(id, direccionRandom());
+                nuevoObstaculo(id, tipo);           
+            }
+            if(union == "fluida"){
+                id = buscarIdPorDireccion(id, direccionRandom(),5);
+                nuevoObstaculo(id, tipo);           
             }
         }
     }
@@ -70,21 +72,29 @@ function generarObstaculos(tipo, tam, zona, union){
 }
 
 function direccionRandom(){
-    return Math.floor(Math.random()*4);
+    return Math.floor(Math.random()*8);
 }
 
-function buscarIdPorDireccion(inicial, direccion){
+function buscarIdPorDireccion(inicial, direccion, pasos=1){
     let resultado = 0;
-   if(direccion == 0){resultado = inicial - numCasillas[1];}
-   if(direccion == 1){resultado = inicial + 1;}
-   if(direccion == 2){resultado = inicial + numCasillas[1];}
-   if(direccion == 3){resultado = inicial - 1;}
+    if (pasos != 1){
+        pasos = Math.floor(Math.random()*pasos);
+    }
+
+   if(direccion == 0){resultado = inicial - (numCasillas[1]*pasos);}
+   else if(direccion == 1){resultado = inicial - (numCasillas[1]*pasos)+pasos;}
+   else if(direccion == 2){resultado = inicial + pasos;}
+   else if(direccion == 3){resultado = inicial + (numCasillas[1]*pasos)+pasos;}
+   else if(direccion == 4){resultado = inicial + (numCasillas[1]*pasos);}
+   else if(direccion == 5){resultado = inicial + (numCasillas[1]*pasos)-pasos;}
+   else if(direccion == 6){resultado = inicial - pasos;}
+   else if(direccion == 7){resultado = inicial - (numCasillas[1]*pasos)-pasos;}
+   else{console.log("Fallo en direcciones posibles!!!");}
    
-   if(resultado >= 0 && resultado <= casillas.length){
+   if(resultado >= 0 && resultado < casillas.length){
        return resultado;
    } else{
-       return inicial;
-      
+       return inicial; 
    }
 }
 
@@ -98,15 +108,39 @@ function comprobarObstaculo(id){
 }
 
 function nuevoObstaculo(id, tipo){
-    if(comprobarObstaculo(id) == false){
-        casillas[id].cambiarTipo(tipo);
-        console.log("Creado en:"+id);
-    } else{ 
-        otraBusqueda(id, tipo);
-        console.log("No encuentra: "+id);
-    }
+        if(comprobarObstaculo(id) == false){
+            casillas[id].cambiarTipo(tipo);
+        } else{ 
+            otraBusqueda(id, tipo);
+        }
+    
 }
 
 function otraBusqueda(id, tipo){
     nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), tipo);
+}
+
+
+function generarMudo(){
+    let tamPlaneta = casillas.length;
+    let restoTam = tamPlaneta;
+
+
+    while(restoTam>0){
+        let idBioma = Math.floor(Math.random()*biomasList.length)
+        let bioma = biomasList[idBioma];
+        let tamTemp = 0;
+
+        if(bioma.maxTam<restoTam){
+            tamTemp = Math.floor(Math.random()*bioma.maxTam);
+            restoTam -= tamTemp;
+        }else{
+            restoTam -= restoTam;
+            tamTemp= 0;
+        }
+        
+        generarObstaculos(bioma.tipo, tamTemp, bioma.tipoZona, bioma.tipoUnion);
+
+
+    }
 }
