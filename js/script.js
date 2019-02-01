@@ -20,10 +20,10 @@ function crearObjetosCuadricula(){
 
     //Iniciar Casillas
     let cont = 0;
-    for(let i = 0 ; i < numCasillas[0] ; i++ ){
-        for(let n = 0 ; n < numCasillas[1] ; n++ ){
+    for(let i = 0 ; i < numCasillas[1]+1 ; i++ ){
+        for(let n = 0 ; n < numCasillas[0]+1 ; n++ ){
             
-            var nuevaCasilla = new Casilla (cont,i*tamCasilla,n*tamCasilla);
+            var nuevaCasilla = new Casilla (cont,n*tamCasilla,i*tamCasilla);
             casillas.push(nuevaCasilla); 
             cont++;
     }}
