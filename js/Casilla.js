@@ -18,11 +18,11 @@ class Casilla {
 
     dibujar(){
 
-        //context.drawImage(this.img,this.x,this.y,this.tam,this.tam);
-        //context.stroke();
-        context.font = "5px American Captain";
-        context.fillStyle="white";
-        context.fillText(this.id,this.x,this.y);
+        context.drawImage(this.img,this.x,this.y,this.tam,this.tam);
+        context.stroke();
+        //context.font = "5px American Captain";
+        //context.fillStyle="white";
+        //context.fillText(this.id,this.x,this.y);
 
    
     }

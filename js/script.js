@@ -3,7 +3,8 @@
 (function(){
     crearObjetosCuadricula();
     generarMudo();
-    
+    context.width = canvas.width;
+    context.height = canvas.height;
 })()
 
  //Bucle
