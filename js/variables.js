@@ -13,36 +13,42 @@ const biomasList = [
         'tipo': "Tierra",
         'maxTam': 50,
         'tipoZona': "radial",
-        'tipoUnion': "fluida"
+        'tipoUnion': "fluida",
+        'imaNom': "base"
     },
     {
         'tipo': "Montaña",
         'maxTam': 300,
         'tipoZona': "radial",
-        'tipoUnion': "compacta"
+        'tipoUnion': "compacta",
+        'imaNom': "montana"
     },
     {
         'tipo': "Monte",
         'maxTam': 150,
         'tipoZona': "radial",
-        'tipoUnion': "compacta"
+        'tipoUnion': "compacta",
+        'imaNom': "monte"
     },
     {
         'tipo': "Lago",
         'maxTam': 150,
         'tipoZona': "radial",
-        'tipoUnion': "compacta"
+        'tipoUnion': "compacta",
+        'imaNom': "lago"
     },
     {
         'tipo': "Rio",
         'maxTam': 150,
         'tipoZona': "lineal",
-        'tipoUnion': "fluida"
+        'tipoUnion': "fluida",
+        'imaNom': "agua"
     },
     {
         'tipo': "Gran rio",
         'maxTam': 400,
         'tipoZona': "lineal",
-        'tipoUnion': "compacta"
+        'tipoUnion': "compacta",
+        'imaNom': "granrio"
     }
 ]

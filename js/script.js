@@ -18,8 +18,7 @@ function crearObjetosCuadricula(){
     //Iniciar Casillas
     let cont = 0
     for(let i = 0 ; i < numCasillas[1] ; i++ ){
-        for(let n = 0 ; n < numCasillas[0] ; n++ ){
-            
+        for(let n = 0 ; n < numCasillas[0] ; n++ ){         
             var nuevaCasilla = new Casilla (cont,n*tamCasilla,i*tamCasilla);
             casillas.push(nuevaCasilla); 
             cont++;
@@ -42,26 +41,26 @@ function refrescarCanvas(){
     casillas.map((i)=>i.dibujar());
 }
 
-function generarObstaculos(tipo, tam, zona, union){
+function generarObstaculos(bioma, tam, zona, union){
     let id = Math.floor(Math.random()*casillas.length);
 
     for(let i=0;i<tam;i++){
         if(zona == "radial"){     
             if(union == "compacta"){
-                nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), tipo);           
+                nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), bioma);           
             }
             if(union == "fluida"){
-                nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom(),15), tipo);           
+                nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom(),15), bioma);           
             }
         }
         if(zona == "lineal"){     
             if(union == "compacta"){
                 id = buscarIdPorDireccion(id, direccionRandom());
-                nuevoObstaculo(id, tipo);           
+                nuevoObstaculo(id, bioma);           
             }
             if(union == "fluida"){
                 id = buscarIdPorDireccion(id, direccionRandom(),5);
-                nuevoObstaculo(id, tipo);           
+                nuevoObstaculo(id, bioma);           
             }
         }
     }
@@ -101,16 +100,16 @@ function comprobarObstaculo(id){
         return casillas[id].obstaculo;}   
 }
 
-function nuevoObstaculo(id, tipo){
+function nuevoObstaculo(id, bioma){
         if(comprobarObstaculo(id) == false){
-            casillas[id].cambiarTipo(tipo);
+            casillas[id].cambiarTipo(bioma);
         } else{ 
-            otraBusqueda(id, tipo);
+            otraBusqueda(id, bioma);
         }   
 }
 
-function otraBusqueda(id, tipo){
-    nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), tipo);
+function otraBusqueda(id, bioma){
+    nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), bioma);
 }
 
 function generarMudo(){
@@ -129,6 +128,6 @@ function generarMudo(){
             restoTam -= restoTam;
             tamTemp= 0;
         }     
-        generarObstaculos(bioma.tipo, tamTemp, bioma.tipoZona, bioma.tipoUnion);
+        generarObstaculos(bioma, tamTemp, bioma.tipoZona, bioma.tipoUnion);
     }
 }
