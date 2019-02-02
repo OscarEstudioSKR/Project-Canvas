@@ -8,8 +8,7 @@
  //Bucle
 setInterval("main()", fps);
 
-//Interior del bucle//////////////////
-
+//Interior del bucle
 function main(){ 
     refrescarCanvas();
 }
@@ -27,22 +26,21 @@ function crearObjetosCuadricula(){
     }}
 }
 
-
 function borrarCanvas(){
     context.clearRect(0,0,canvas.width,canvas.height);
 }
 
 function refrescarCanvas(){
     borrarCanvas();
-
-    //Volver a dibujar cuadricula
-    
+  
+    //Buscar los vecinos en array descendiente
     for(let n = casillas.length-1; n > 0; n--){
         casillas[n].vecinosPorIdInversa();
     }
+
+    //Volver a dibujar cuadricula
     casillas.map((i)=>i.dibujar());
 }
-
 
 function generarObstaculos(tipo, tam, zona, union){
     let id = Math.floor(Math.random()*casillas.length);
@@ -67,7 +65,6 @@ function generarObstaculos(tipo, tam, zona, union){
             }
         }
     }
-
 }
 
 function direccionRandom(){
@@ -100,10 +97,8 @@ function buscarIdPorDireccion(inicial, direccion, pasos=1){
 function comprobarObstaculo(id){
     if(id<0 || id > casillas.length){
         return true;
-    }
-    else{
-        return casillas[id].obstaculo;}
-    
+    }else{
+        return casillas[id].obstaculo;}   
 }
 
 function nuevoObstaculo(id, tipo){
@@ -111,19 +106,16 @@ function nuevoObstaculo(id, tipo){
             casillas[id].cambiarTipo(tipo);
         } else{ 
             otraBusqueda(id, tipo);
-        }
-    
+        }   
 }
 
 function otraBusqueda(id, tipo){
     nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), tipo);
 }
 
-
 function generarMudo(){
     let tamPlaneta = casillas.length;
     let restoTam = tamPlaneta;
-
 
     while(restoTam>0){
         let idBioma = Math.floor(Math.random()*biomasList.length)
@@ -136,10 +128,7 @@ function generarMudo(){
         }else{
             restoTam -= restoTam;
             tamTemp= 0;
-        }
-        
+        }     
         generarObstaculos(bioma.tipo, tamTemp, bioma.tipoZona, bioma.tipoUnion);
-
-
     }
 }
