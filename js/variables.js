@@ -11,45 +11,59 @@ const casillas = []; //Objetos casilla del juego
 
 const biomasList = [
     {
-        'tipo': "Tierra",
+        'nombre': "Tierra",
+        'tipo': "tierra",
         'maxTam': 20 * tamBiomas,
         'tipoZona': "radial",
         'tipoUnion': "fluida",
         'imaNom': "base"
     },
     {
-        'tipo': "Montaña",
+        'nombre': "Montaña",
+        'tipo': "montaña",
         'maxTam': 30 * tamBiomas,
         'tipoZona': "radial",
         'tipoUnion': "compacta",
         'imaNom': "montana"
     },
     {
-        'tipo': "Monte",
+        'nombre': "Monte",
+        'tipo': "monte",
         'maxTam': 15 * tamBiomas,
         'tipoZona': "radial",
         'tipoUnion': "compacta",
         'imaNom': "monte"
     },
     {
-        'tipo': "Lago",
+        'nombre': "Pradera",
+        'tipo': "hierba",
+        'maxTam': 40 * tamBiomas,
+        'tipoZona': "radial",
+        'tipoUnion': "compacta",
+        'imaNom': "hierba"
+    },
+    {
+        'nombre': "Lago",
+        'tipo': "agua",
         'maxTam': 30 * tamBiomas,
         'tipoZona': "radial",
         'tipoUnion': "compacta",
-        'imaNom': "lago"
+        'imaNom': "agua"
     },
     {
-        'tipo': "Rio",
-        'maxTam': 13 * tamBiomas,
+        'nombre': "Riachuelo",
+        'tipo': "agua",
+        'maxTam': 10 * tamBiomas,
         'tipoZona': "lineal",
         'tipoUnion': "fluida",
         'imaNom': "agua"
     },
-    {
-        'tipo': "Gran rio",
-        'maxTam': 25 * tamBiomas,
+    {  
+        'nombre': "Gran rio",
+        'tipo': "agua",
+        'maxTam': 20 * tamBiomas,
         'tipoZona': "lineal",
         'tipoUnion': "compacta",
-        'imaNom': "granrio"
+        'imaNom': "agua"
     }
 ]
