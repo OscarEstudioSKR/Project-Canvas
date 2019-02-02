@@ -11,6 +11,7 @@ setInterval("main()", fps);
 //Interior del bucle
 function main(){ 
     refrescarCanvas();
+
 }
 
 function crearObjetosCuadricula(){

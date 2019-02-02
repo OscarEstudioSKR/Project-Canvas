@@ -17,28 +17,31 @@ class Casilla {
     }
 
     dibujar(){
-
-        //Buscar los vecinos en array ascendente
-        this.vecinosPorContador();
         
-        //Cambiar imagen dependiendo de los vecinos
-        if(this.vecinoTipoIgual(0) == false && this.vecinoTipoIgual(4) == false){ 
-            this.img.src = "/img/"+this.imaNom+"03.png";}
-        else if(this.vecinoTipoIgual(0) == false){ 
-            this.img.src = "/img/"+this.imaNom+"02.png"; }
-        else if(this.vecinoTipoIgual(4) == false){ 
-            this.img.src = "/img/"+this.imaNom+"01.png"; }
-        else{
-            this.img.src = "/img/"+this.imaNom+"00.png"; }
+        if(this.tipo != "Vacío"){
 
-        //Pintar imagen
-        context.drawImage(this.img,this.x,this.y,this.tam,this.tam);
-        context.stroke();
+            //Buscar los vecinos en array ascendente
+            this.vecinosPorContador();
+            
+            //Cambiar imagen dependiendo de los vecinos
+            if(this.vecinoTipoIgual(0) == false && this.vecinoTipoIgual(4) == false){ 
+                this.img.src = "/img/"+this.imaNom+"03.png";}
+            else if(this.vecinoTipoIgual(0) == false){ 
+                this.img.src = "/img/"+this.imaNom+"02.png"; }
+            else if(this.vecinoTipoIgual(4) == false){ 
+                this.img.src = "/img/"+this.imaNom+"01.png"; }
+            else{
+                this.img.src = "/img/"+this.imaNom+"00.png"; }
 
-        //context.font = "10px American Captain";
-        //context.fillStyle="white";
-        //context.fillText(this.x/tamCasilla+" : "+this.y/tamCasilla,this.x,this.y);
-        //context.fillText(this.id,this.x,this.y+this.tam);
+            //Pintar imagen
+            context.drawImage(this.img,this.x,this.y,this.tam,this.tam);
+            context.stroke();
+
+            //context.font = "10px American Captain";
+            //context.fillStyle="white";
+            //context.fillText(this.x/tamCasilla+" : "+this.y/tamCasilla,this.x,this.y);
+            //context.fillText(this.id,this.x,this.y+this.tam);
+        }
     }
 
     vecinosPorIdInversa(){
