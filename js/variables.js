@@ -10,7 +10,13 @@ const casillas = []; //Objetos casilla del juego
 
 const biomasList = [
     {
-        'tipo': "Montaña1",
+        'tipo': "Tierra",
+        'maxTam': 50,
+        'tipoZona': "radial",
+        'tipoUnion': "fluida"
+    },
+    {
+        'tipo': "Montaña",
         'maxTam': 300,
         'tipoZona': "radial",
         'tipoUnion': "compacta"
@@ -31,7 +37,7 @@ const biomasList = [
         'tipo': "Rio",
         'maxTam': 150,
         'tipoZona': "lineal",
-        'tipoUnion': "compacta"
+        'tipoUnion': "fluida"
     },
     {
         'tipo': "Gran rio",

@@ -38,7 +38,7 @@ function refrescarCanvas(){
     //Volver a dibujar cuadricula
     
     for(let n = casillas.length-1; n > 0; n--){
-        casillas[n].imagenPorVecinos();
+        casillas[n].vecinosPorIdInversa();
     }
     casillas.map((i)=>i.dibujar());
 }
