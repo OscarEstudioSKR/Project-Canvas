@@ -99,19 +99,32 @@ function comprobarObstaculo(id){
     }else{
         return casillas[id].obstaculo;}   
 }
-
+/*
 function nuevoObstaculo(id, bioma){
         if(comprobarObstaculo(id) == false){
             casillas[id].cambiarTipo(bioma);
         } else{ 
             otraBusqueda(id, bioma);
         }   
+}*/
+
+function nuevoObstaculo(id, bioma){
+    let posicionado = false;
+
+    while (posicionado == false) {
+        if(comprobarObstaculo(id) == false){
+            casillas[id].cambiarTipo(bioma);
+            posicionado = true;
+        }
+        id = buscarIdPorDireccion(id, direccionRandom());
+    }
 }
 
+/*
 function otraBusqueda(id, bioma){
     nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), bioma);
 }
-
+*/
 function generarMudo(){
     let tamPlaneta = casillas.length;
     let restoTam = tamPlaneta;
