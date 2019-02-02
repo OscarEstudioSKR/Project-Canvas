@@ -3,8 +3,6 @@
 (function(){
     crearObjetosCuadricula();
     generarMudo();
-    context.width = canvas.width;
-    context.height = canvas.height;
 })()
 
  //Bucle
@@ -14,15 +12,14 @@ setInterval("main()", fps);
 
 function main(){ 
     refrescarCanvas();
-
 }
 
 function crearObjetosCuadricula(){
 
     //Iniciar Casillas
-    let cont = 0;
-    for(let i = 0 ; i < numCasillas[1]+1 ; i++ ){
-        for(let n = 0 ; n < numCasillas[0]+1 ; n++ ){
+    let cont = 0
+    for(let i = 0 ; i < numCasillas[1] ; i++ ){
+        for(let n = 0 ; n < numCasillas[0] ; n++ ){
             
             var nuevaCasilla = new Casilla (cont,n*tamCasilla,i*tamCasilla);
             casillas.push(nuevaCasilla); 
@@ -39,17 +36,18 @@ function refrescarCanvas(){
     borrarCanvas();
 
     //Volver a dibujar cuadricula
-    casillas.map((i)=>i.dibujar());
+    
     for(let n = casillas.length-1; n > 0; n--){
         casillas[n].imagenPorVecinos();
     }
+    casillas.map((i)=>i.dibujar());
 }
 
 
 function generarObstaculos(tipo, tam, zona, union){
     let id = Math.floor(Math.random()*casillas.length);
 
-    for(let i=0;i<tam-1;i++){
+    for(let i=0;i<tam;i++){
         if(zona == "radial"){     
             if(union == "compacta"){
                 nuevoObstaculo(buscarIdPorDireccion(id, direccionRandom()), tipo);           
@@ -81,15 +79,15 @@ function buscarIdPorDireccion(inicial, direccion, pasos=1){
     if (pasos != 1){
         pasos = Math.floor(Math.random()*pasos);
     }
-
-   if(direccion == 0){resultado = inicial - (numCasillas[1]*pasos);}
-   else if(direccion == 1){resultado = inicial - (numCasillas[1]*pasos)+pasos;}
+ 
+   if(direccion == 0){resultado = inicial - (numCasillas[0]*pasos);}
+   else if(direccion == 1){resultado = inicial - (numCasillas[0]*pasos);}
    else if(direccion == 2){resultado = inicial + pasos;}
-   else if(direccion == 3){resultado = inicial + (numCasillas[1]*pasos)+pasos;}
-   else if(direccion == 4){resultado = inicial + (numCasillas[1]*pasos);}
-   else if(direccion == 5){resultado = inicial + (numCasillas[1]*pasos)-pasos;}
+   else if(direccion == 3){resultado = inicial + (numCasillas[0]*pasos);}
+   else if(direccion == 4){resultado = inicial + (numCasillas[0]*pasos);}
+   else if(direccion == 5){resultado = inicial + (numCasillas[0]*pasos);}
    else if(direccion == 6){resultado = inicial - pasos;}
-   else if(direccion == 7){resultado = inicial - (numCasillas[1]*pasos)-pasos;}
+   else if(direccion == 7){resultado = inicial - (numCasillas[0]*pasos);}
    else{console.log("Fallo en direcciones posibles!!!");}
    
    if(resultado >= 0 && resultado < casillas.length){

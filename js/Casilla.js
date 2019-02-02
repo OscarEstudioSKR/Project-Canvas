@@ -20,9 +20,10 @@ class Casilla {
 
         context.drawImage(this.img,this.x,this.y,this.tam,this.tam);
         context.stroke();
-        //context.font = "5px American Captain";
-        //context.fillStyle="white";
-        //context.fillText(this.id,this.x,this.y);
+        context.font = "10px American Captain";
+        context.fillStyle="white";
+        //context.fillText(this.x/tamCasilla+" : "+this.y/tamCasilla,this.x,this.y);
+        context.fillText(this.id,this.x,this.y+this.tam);
 
    
     }
@@ -70,7 +71,7 @@ class Casilla {
         
         if(this.tipo=="Lago"){
             this.img1.src="/img/agua00.png";
-            this.img2.src="/img/agua00.png";
+            this.img2.src="/img/agua01.png";
 
         }
         this.img = this.img1;
