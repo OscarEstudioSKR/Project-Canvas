@@ -9,7 +9,7 @@ class Casilla {
 
         this.img = new Image;
         this.imaNom = "base";
-        this.img.src="./img/"+this.imaNom+"00.png";
+        this.img.src="";
         
 
         this.vecinosTipo=["","","","","","","",""];
