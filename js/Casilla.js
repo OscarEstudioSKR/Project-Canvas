@@ -24,14 +24,14 @@ class Casilla {
             this.vecinosPorContador();
             
             //Cambiar imagen dependiendo de los vecinos
+            this.img.src = "./img/"+this.imaNom+"00.png";
+            
             if(this.vecinoTipoIgual(0) == false && this.vecinoTipoIgual(4) == false){ 
                 this.img.src = "./img/"+this.imaNom+"03.png";}
             else if(this.vecinoTipoIgual(0) == false){ 
                 this.img.src = "./img/"+this.imaNom+"02.png"; }
             else if(this.vecinoTipoIgual(4) == false){ 
                 this.img.src = "./img/"+this.imaNom+"01.png"; }
-            else{
-                this.img.src = "./img/"+this.imaNom+"00.png"; }
 
             //Pintar imagen
             context.drawImage(this.img,this.x,this.y,this.tam,this.tam);
