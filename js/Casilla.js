@@ -85,7 +85,7 @@ class Casilla {
         this.tipo = bioma.tipo;
         this.imaNom = bioma.imaNom;
         this.obstaculo = true;
-        this.img.src = "./img/"+this.imaNom+"00.png";
+        
         
     }
 
